@@ -1,6 +1,5 @@
+import React from 'react';
 import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import googleButton from '../assets/googleButton.png';
 import { socialLogin } from './firestore/firebaseService';
 

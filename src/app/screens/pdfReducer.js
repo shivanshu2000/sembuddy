@@ -22,6 +22,12 @@ export default function pdfReducer(state = initialState, { type, payload }) {
         ...state,
         pdfs: payload,
       };
+
+    case 'LEFT_COMPONENT':
+      return {
+        ...state,
+        pdfs: [],
+      };
     default:
       return { ...state };
   }

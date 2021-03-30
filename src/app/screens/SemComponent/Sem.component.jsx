@@ -11,13 +11,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import forwardArrow from '../../../assets/forwardArrow.svg';
+import { image } from '../images';
 
 import { data } from './data';
 const useStyles = makeStyles((theme) => ({
   card: {
     marginLeft: '15px',
     marginRight: '15px',
-    height: '250px',
+    height: '220px',
     // width: '250px',
     [theme.breakpoints.up('md')]: {
       marginTop: '15px',
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    height: '70%',
+    height: '60%',
     width: '100%',
     color: 'white',
     borderRadius: '3px',
@@ -53,6 +54,7 @@ const SemComponent = ({ match }) => {
   const matchesXs = useMediaQuery(theme.breakpoints.down('xs'));
   const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
+  console.log(match.url);
 
   const year = match.params.year;
 
@@ -85,7 +87,13 @@ const SemComponent = ({ match }) => {
             key={`${detail}`}
             className={classes.card}
           >
-            <Grid item className={classes.imageContainer}>
+            <Grid
+              item
+              className={classes.imageContainer}
+              style={{
+                backgroundImage: `url(${image[Math.floor(Math.random() * 5)]})`,
+              }}
+            >
               <Typography
                 variant="h5"
                 style={{ marginTop: '10px', padding: '4px' }}
@@ -95,7 +103,10 @@ const SemComponent = ({ match }) => {
               </Typography>
             </Grid>
 
-            <Grid item style={{ marginTop: '18px' }}>
+            <Grid
+              item
+              style={{ marginTop: '18px', borderTop: '1px solid #eee' }}
+            >
               <Grid item container direction="row" justify="flex-end">
                 <IconButton style={{ backgroundColor: 'transparent' }}>
                   <Button

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { image } from './images';
 import {
+  Button,
   Grid,
   IconButton,
   makeStyles,
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     marginLeft: '15px',
     marginRight: '15px',
-    height: '250px',
+    height: '220px',
     // width: '250px',
     [theme.breakpoints.up('md')]: {
       marginTop: '15px',
@@ -44,19 +47,18 @@ const useStyles = makeStyles((theme) => ({
   },
 
   imageContainer: {
-    backgroundImage:
-      'url(https://gstatic.com/classroom/themes/img_learnlanguage.jpg)',
+    backgroundImage: `url(${image}.${image}${Math.floor(Math.random() * 4)})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    height: '70%',
+    height: '60%',
     width: '100%',
     color: 'white',
     borderRadius: '3px',
   },
 }));
 
-export default function SemComponent({ match, location, history }) {
+export default function BranchComponent({ match, location, history }) {
   console.log(match, location, history);
 
   const theme = useTheme();
@@ -64,6 +66,9 @@ export default function SemComponent({ match, location, history }) {
   const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
   const classes = useStyles();
 
+  console.log(match.url);
+
+  console.log(image[Math.floor(Math.random() * 4)]);
   return (
     <>
       <Grid container direction="column" style={{ marginBottom: '140px' }}>
@@ -89,7 +94,15 @@ export default function SemComponent({ match, location, history }) {
               key={`${branch.name}${branch.to}`}
               className={classes.card}
             >
-              <Grid item className={classes.imageContainer}>
+              <Grid
+                item
+                className={classes.imageContainer}
+                style={{
+                  backgroundImage: `url(${
+                    image[Math.floor(Math.random() * 5)]
+                  })`,
+                }}
+              >
                 <Typography
                   variant="h5"
                   style={{ marginTop: '10px', padding: '4px' }}
@@ -99,10 +112,15 @@ export default function SemComponent({ match, location, history }) {
                 </Typography>
               </Grid>
 
-              <Grid item style={{ marginTop: '18px' }}>
+              <Grid
+                item
+                style={{ marginTop: '18px', borderTop: '1px solid #eee' }}
+              >
                 <Grid item container direction="row" justify="flex-end">
                   <IconButton style={{ backgroundColor: 'transparent' }}>
-                    <img src={forwardArrow} alt="TO Branch page" />
+                    <Button component={Link} to={`${match.url}${branch.to}`}>
+                      <img src={forwardArrow} alt="TO Branch page" />
+                    </Button>
                   </IconButton>
                 </Grid>
               </Grid>

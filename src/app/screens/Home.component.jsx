@@ -39,11 +39,6 @@ export default function Home({ history }) {
     data: (profile) => dispatch(listenToCurrentUserProfile(profile)),
     deps: [dispatch],
   });
-  // useFirestoreCollection({
-  //   query: () => listenToEventsFromFirestore(),
-  //   data: (events) => dispatch(listenToPdfs(events)),
-  //   deps: [dispatch],
-  // });
 
   return (
     <Grid

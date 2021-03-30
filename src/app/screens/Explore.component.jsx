@@ -1,6 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, IconButton, Typography, useMediaQuery } from '@material-ui/core';
+import {
+  Button,
+  Grid,
+  IconButton,
+  Typography,
+  useMediaQuery,
+} from '@material-ui/core';
+import { image } from './images';
 
 import forwardArrow from '../../assets/forwardArrow.svg';
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -16,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     marginLeft: '15px',
     marginRight: '15px',
-    height: '300px',
+    height: '220px',
 
     [theme.breakpoints.up('md')]: {
       marginLeft: '35px',
@@ -37,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    height: '70%',
+    height: '60%',
     width: '100%',
     color: 'white',
     borderRadius: '3px',
@@ -46,12 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Explore({ match }) {
   const classes = useStyles();
-
-  const images = [
-    'https://gstatic.com/classroom/themes/img_code.jpg',
-    'https://gstatic.com/classroom/themes/img_learnlanguage.jpg',
-    'https://gstatic.com/classroom/themes/img_breakfast.jpg',
-  ];
 
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('sm'));
@@ -79,7 +80,15 @@ export default function Explore({ match }) {
               key={`${year.year}${year.to}`}
               className={classes.card}
             >
-              <Grid item className={classes.imageContainer}>
+              <Grid
+                item
+                className={classes.imageContainer}
+                style={{
+                  backgroundImage: `url(${
+                    image[Math.floor(Math.random() * 5)]
+                  })`,
+                }}
+              >
                 <Typography
                   variant="h5"
                   style={{ marginTop: '10px', padding: '10px' }}
@@ -89,10 +98,15 @@ export default function Explore({ match }) {
                 </Typography>
               </Grid>
 
-              <Grid item style={{ marginTop: '18px' }}>
+              <Grid
+                item
+                style={{ marginTop: '18px', borderTop: '1px solid #eee' }}
+              >
                 <Grid item container direction="row" justify="flex-end">
                   <IconButton style={{ backgroundColor: 'transparent' }}>
-                    <img src={forwardArrow} alt="TO Branch page" />
+                    <Button component={Link} to={`${match.path}${year.to}`}>
+                      <img src={forwardArrow} alt="TO Branch page" />
+                    </Button>
                   </IconButton>
                 </Grid>
               </Grid>

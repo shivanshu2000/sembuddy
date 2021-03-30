@@ -1,4 +1,4 @@
-import { Card, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { MailOutline } from '@material-ui/icons';
 import React from 'react';
 

@@ -1,10 +1,8 @@
-import { useSelector } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { verifyAuth } from '../auth/authActions';
-import { listenToCurrentUserProfileLogout } from '../screens/ProfileComponent/profileActions';
 
 import rootReducer from './rootReducer';
 

@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { useField } from 'formik';
-import {
-  FormControl,
-  FormHelperText,
-  Input,
-  InputLabel,
-  TextField,
-} from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 export default function MyTextField({ ...props }) {
   const [field, meta] = useField(props);

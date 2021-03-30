@@ -49,15 +49,3 @@ export default function PdfWidgetDropzone({ setFiles, files }) {
     </Grid>
   );
 }
-
-{
-  /* <div
-{...getRootProps()}
-style={
-  isDragActive ? { ...dropzoneStyles, ...dropzoneActive } : dropzoneStyles
-}
->
-<input {...getInputProps()} />
-<CloudUploadIcon fontSize="large" />
-</div> */
-}
