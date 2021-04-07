@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '9px',
     },
     boxShadow:
-      '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+      '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 6px 0 rgba(0, 0, 0, 0.19)',
   },
 
   header: {
@@ -58,6 +58,7 @@ export default function PDFComponent({ match, history }) {
   const theme = useTheme();
 
   const belowXs = useMediaQuery(theme.breakpoints.down('xs'));
+  const belowSm = useMediaQuery(theme.breakpoints.down('sm'));
 
   const filter = match.params.subject.split('-').join(' ');
   console.log(filter);
@@ -110,7 +111,12 @@ export default function PDFComponent({ match, history }) {
       ) : null}
 
       {loading === false ? (
-        <Grid item container style={{ padding: '20px' }}>
+        <Grid
+          item
+          container
+          style={{ padding: '20px' }}
+          justify={belowSm ? 'space-evenly' : 'space-evenly'}
+        >
           {pdfs.map((pdf) => (
             <Grid
               item
@@ -118,7 +124,7 @@ export default function PDFComponent({ match, history }) {
               // direction="column"
               key={`${pdf.id}`}
               xs={12}
-              sm={7}
+              sm={8}
               md={4}
               lg={3}
               className={classes.card}
@@ -140,13 +146,26 @@ export default function PDFComponent({ match, history }) {
                 </Grid>
               )}
 
-              <Grid item xs={10} className={classes.responsiveMargin}>
-                <Grid item container direction="column">
-                  <Grid item style={{ color: '#00000090' }}>
+              <Grid
+                item
+                sm={10}
+                className={classes.responsiveMargin}
+                // style={{  }}
+              >
+                <Grid
+                  item
+                  container
+                  direction="column"
+                  style={{ overflow: 'hidden', paddingBottom: '3px' }}
+                >
+                  <Grid
+                    item
+                    style={{ color: '#00000090', overflowWrap: 'break-word' }}
+                  >
                     {pdf.name}
                   </Grid>
                   <Grid item style={{ color: '#00000095', marginTop: '10px' }}>
-                    Given by: {pdf.givenBy}
+                    Upladed by: {pdf.uploadedBy.split(' ')[0]}
                   </Grid>
                   <Grid item style={{ marginTop: '10px' }}>
                     <Button
@@ -156,7 +175,7 @@ export default function PDFComponent({ match, history }) {
                       variant="contained"
                       color="secondary"
                     >
-                      View Pdf
+                      Click here
                     </Button>
                   </Grid>
                 </Grid>

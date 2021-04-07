@@ -1,12 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Grid,
-  IconButton,
-  Typography,
-  useMediaQuery,
-} from '@material-ui/core';
+import { Grid, IconButton, Typography, useMediaQuery } from '@material-ui/core';
 import { image } from './images';
 
 import forwardArrow from '../../assets/forwardArrow.svg';
@@ -104,9 +98,7 @@ export default function Explore({ match }) {
               >
                 <Grid item container direction="row" justify="flex-end">
                   <IconButton style={{ backgroundColor: 'transparent' }}>
-                    <Button component={Link} to={`${match.path}${year.to}`}>
-                      <img src={forwardArrow} alt="TO Branch page" />
-                    </Button>
+                    <img src={forwardArrow} alt="TO Branch page" />
                   </IconButton>
                 </Grid>
               </Grid>

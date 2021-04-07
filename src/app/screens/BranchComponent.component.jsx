@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { image } from './images';
 import {
-  Button,
   Grid,
   IconButton,
   makeStyles,
@@ -118,9 +117,7 @@ export default function BranchComponent({ match, location, history }) {
               >
                 <Grid item container direction="row" justify="flex-end">
                   <IconButton style={{ backgroundColor: 'transparent' }}>
-                    <Button component={Link} to={`${match.url}${branch.to}`}>
-                      <img src={forwardArrow} alt="TO Branch page" />
-                    </Button>
+                    <img src={forwardArrow} alt="TO Branch page" />
                   </IconButton>
                 </Grid>
               </Grid>

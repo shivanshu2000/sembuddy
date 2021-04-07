@@ -6,7 +6,6 @@ import { TextField } from '@material-ui/core';
 export default function MyTextField({ ...props }) {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
-  console.log(meta.error);
   return (
     <TextField
       style={{ marginTop: '20px' }}

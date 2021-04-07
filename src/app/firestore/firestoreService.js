@@ -16,6 +16,9 @@ export function dataFromSnapshot(snapshot) {
 export function listenToEventFromFirestore(filter) {
   return db.collection('pdfs').where('category', '==', filter);
 }
+export function listenToEventFromFirestoreByName(name) {
+  return db.collection('pdfs').where('name', '==', name);
+}
 
 export function listenToEventsFromFirestore() {
   return db.collection('pdfs');

@@ -1,5 +1,4 @@
 import {
-  Button,
   Grid,
   IconButton,
   makeStyles,
@@ -109,12 +108,7 @@ const SemComponent = ({ match }) => {
             >
               <Grid item container direction="row" justify="flex-end">
                 <IconButton style={{ backgroundColor: 'transparent' }}>
-                  <Button
-                    component={Link}
-                    to={`${match.url}/${detail.split(' ').join('-')}`}
-                  >
-                    <img src={forwardArrow} alt="TO Branch page" />
-                  </Button>
+                  <img src={forwardArrow} alt="TO Branch page" />
                 </IconButton>
               </Grid>
             </Grid>

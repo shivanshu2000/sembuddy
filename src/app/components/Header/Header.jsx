@@ -79,8 +79,6 @@ export default function Header({ activeLink }) {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
 
-  console.log(activeLink);
-
   const [value, setValue] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const { loading } = useSelector((state) => state.async);

@@ -14,7 +14,6 @@ export default function PdfWidgetDropzone({ setFiles, files }) {
   const dropzoneActive = {
     border: 'solid 2px #0B72B9',
   };
-  console.log(!!files[0], 'hii');
 
   const onDrop = useCallback(
     (acceptedFiles) => {

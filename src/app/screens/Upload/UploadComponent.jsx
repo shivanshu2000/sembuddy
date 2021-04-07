@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 import MyTextField from './MyTextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import PdfWidgetDropzone from './PdfWigetDropzone';
-import cuid from 'cuid';
 import { uploadToFirebaseStorage } from '../../firestore/firebaseService';
 import { uploadPdf } from '../../firestore/firestoreService';
 
@@ -22,11 +21,13 @@ export default function UploadComponent() {
 
   function handleUploadPdf(pdf) {
     setLoading(true);
+
+    const cuid = Math.round(Math.random() * 4000);
     const filename =
-      cuid() +
+      files[0].name.split('.pdf')[0] +
+      cuid +
       '.' +
       files[0].name.slice(((files[0].name.lastIndexOf('.') - 1) >>> 0) + 2);
-
     const uploadTask = uploadToFirebaseStorage(files[0], filename);
 
     uploadTask.on(
@@ -34,18 +35,17 @@ export default function UploadComponent() {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(progress);
+
         setLoadingValue(Math.round(progress));
       },
       (error) => {
-        console.log('here');
         toast.error(error.message);
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadUrl) => {
           uploadPdf(downloadUrl, pdf, files[0].name)
             .then(() => {
-              toast.success('Pdf uploaded successfully');
+              toast.success('File uploaded successfully');
               setLoading(false);
             })
             .catch((error) => {
@@ -71,10 +71,28 @@ export default function UploadComponent() {
         { setSubmitting, setErrors, resetForm, setFieldValue }
       ) => {
         try {
-          await handleUploadPdf(values);
-          setFiles([]);
-          resetForm();
-          setSubmitting(false);
+          // return console.log(files[0].name.split('.pdf'));
+          if (files[0].name.split('.pdf')[0] === '')
+            return toast.error('Invalid file name');
+          console.log(
+            !files[0].name.includes('.pdf') || !files[0].name.includes('.ppt')
+          );
+          if (files[0].name.length > 35)
+            return toast.error(
+              'File name is too long. Rename it to a short and understandable one'
+            );
+
+          if (
+            files[0].name.endsWith('.pdf') ||
+            files[0].name.endsWith('.ppt')
+          ) {
+            await handleUploadPdf(values);
+            setFiles([]);
+            resetForm();
+            setSubmitting(false);
+          } else {
+            toast.error('Invalid file type. Please upload valid file');
+          }
         } catch (error) {
           console.log('here');
           toast.error('Something went wrong');

@@ -12,7 +12,6 @@ export function signInUser(user) {
 export function verifyAuth() {
   return function (dispatch) {
     return firebase.auth().onAuthStateChanged((user) => {
-      console.log(user, 'here');
       if (user) {
         dispatch(signInUser(user));
         dispatch({ type: APP_LOADED });
